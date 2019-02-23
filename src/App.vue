@@ -1,23 +1,13 @@
 <template>
-  <div id="app">
-    <!-- the router outlet, where all matched components would ber viewed -->
-    <router-view></router-view>
-  </div>
+  <v-app>
+    <v-content>
+      <v-btn>This is a button</v-btn>
+    </v-content>
+  </v-app>
 </template>
 
 <script>
 export default {
-  name: 'app'
+  name: 'App'
 };
 </script>
-<!-- styling for the component -->
-<style>
-#app {
-  font-family: Matrix, 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
