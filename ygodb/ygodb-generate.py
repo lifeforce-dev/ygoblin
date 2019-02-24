@@ -113,9 +113,9 @@ def generate(sets, output_file):
 
 
 def initialize_dirs():
-    os.makedirs(GENERATED_DIR_NAME, mode=0o777, exist_ok=True)
-    os.makedirs(LOG_FILE_DIR_NAME, mode=0o777, exist_ok=True)
-    os.makedirs(HTML_DUMP_DIR_NAME, mode=0o777, exist_ok=True)
+    os.makedirs(GENERATED_DIR_NAME, exist_ok=True)
+    os.makedirs(LOG_FILE_DIR_NAME, exist_ok=True)
+    os.makedirs(HTML_DUMP_DIR_NAME, exist_ok=True)
 
 
 def main():
