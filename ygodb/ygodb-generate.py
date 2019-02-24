@@ -16,11 +16,12 @@ from lxml import html
 from retrying import retry
 from scrapy import Selector
 
-GENERATED_DIR_NAME = os.path.dirname(os.path.abspath(__file__)) + '/generated/'
-LOG_FILE_DIR_NAME = GENERATED_DIR_NAME + 'logs/'
-HTML_DUMP_DIR_NAME = GENERATED_DIR_NAME + 'html-dumps/'
-CARD_NAMES_FILE_PATH = GENERATED_DIR_NAME + 'card-name-list.txt'
-LOG_FILE_PATH = LOG_FILE_DIR_NAME + 'log.txt'
+GENERATED_DIR_NAME = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                  'generated')
+LOG_FILE_DIR_NAME = os.path.join(GENERATED_DIR_NAME, 'logs')
+HTML_DUMP_DIR_NAME = os.path.join(GENERATED_DIR_NAME, 'html-dumps')
+CARD_NAMES_FILE_PATH = os.path.join(GENERATED_DIR_NAME, 'card-name-list.txt')
+LOG_FILE_PATH = os.path.join(LOG_FILE_DIR_NAME, 'log.txt')
 
 
 def clear_file(file_name):
@@ -62,13 +63,14 @@ def write_html_to_file(set_name, pid, html_text):
     valid_chars = "-_.() %s%s" % (string.ascii_letters, string.digits)
     file_name = ''.join(c for c in set_name if c in valid_chars)
     file_name = file_name.replace(' ', '_')
+    file_name = "{0}-{1}.html".format(file_name, pid)
 
-    path = (HTML_DUMP_DIR_NAME + file_name + '-' + pid + '.html')
+    path = os.path.join(HTML_DUMP_DIR_NAME, file_name)
+
     try:
         with open(path, "w+", encoding='utf-8') as html_dump_file:
             html_dump_file.write(html_text)
     except OSError as e:
-        logging.basicConfig(filename=LOG_FILE_PATH, level=logging.ERROR)
         logging.error('Failed to create html dump. '
                       + ' error=' + e.strerror
                       + ' file_name=' + path)
@@ -111,12 +113,9 @@ def generate(sets, output_file):
 
 
 def initialize_dirs():
-    if not os.path.exists(GENERATED_DIR_NAME):
-        os.makedirs(GENERATED_DIR_NAME)
-    if not os.path.exists(LOG_FILE_DIR_NAME):
-        os.makedirs(LOG_FILE_DIR_NAME)
-    if not os.path.exists(HTML_DUMP_DIR_NAME):
-        os.makedirs(HTML_DUMP_DIR_NAME)
+    os.makedirs(GENERATED_DIR_NAME, mode=0o777, exist_ok=True)
+    os.makedirs(LOG_FILE_DIR_NAME, mode=0o777, exist_ok=True)
+    os.makedirs(HTML_DUMP_DIR_NAME, mode=0o777, exist_ok=True)
 
 
 def main():
