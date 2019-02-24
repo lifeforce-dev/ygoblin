@@ -1,21 +1,21 @@
 <template>
-  <v-app>
-    <router-view>Card</router-view>
-  </v-app>
+    <v-app>
+        <router-view>Card</router-view>
+    </v-app>
 </template>
 
 <script>
 export default {
-  name: 'App'
+    name: 'App'
 };
 </script>
 <style>
 #app {
-  font-family: 'Matrix', 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+    font-family: 'Matrix', 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 60px;
 }
 </style>

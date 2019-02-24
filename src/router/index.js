@@ -7,14 +7,14 @@ import 'vuetify/dist/vuetify.min.css';
 Vue.use(Vuetify);
 Vue.use(Router);
 const routes = [
-  {
-    path: '/',
-    component: Card
-  }
+    {
+        path: '/',
+        component: Card
+    }
 ];
 const router = new Router({
-  routes,
-  mode: 'history'
+    routes,
+    mode: 'history'
 });
 
 export default router;
