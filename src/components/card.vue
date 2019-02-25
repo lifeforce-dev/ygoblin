@@ -18,7 +18,10 @@ export default {
     },
     methods: {
         getData() {
-            this.imgUrl = 'https://storage.googleapis.com/ygoprodeck.com/pics/61665245.jpg';
+            this.imgUrl = this.getImageUrl(61665245);
+        },
+        getImageUrl(id) {
+            return `https://storage.googleapis.com/ygoprodeck.com/pics/${id}.jpg`;
         }
     }
 };
